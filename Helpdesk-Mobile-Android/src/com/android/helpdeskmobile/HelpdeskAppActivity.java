@@ -2,27 +2,38 @@ package com.android.helpdeskmobile;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
-public class HelpdeskAppActivity extends Activity {
+public class HelpdeskAppActivity extends ListActivity {
 	/* Global variables for the activity go here. */
 
 	/* Called when the activity is first created. */
-	@Override
+	@Override	    
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    setContentView(R.layout.main);
-	    
-	    GridView view = (GridView)findViewById(R.id.gridview);
-	    //view.setAdapter(new ListAdapter(this));
+	    String[] actions = getResources().getStringArray(R.array.Actions);
+	    setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, actions));
+	    ListView lv = getListView();
+	    lv.setTextFilterEnabled(true);
+	    lv.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				
+			}
+	    	});
+	    }	
 	    
 	    // TODO Finish method.  Not much will be going here though, because this app doesn't really need to update anything.
-	}
 	
 	/* Listener invokes the ACTION_CALL intent when the user wants to call the Helpdesk. */
 	private class phoneButtonListener implements OnClickListener {

@@ -2,6 +2,12 @@
 <resources>
 
     <string name="hello">Hello World!</string>
-    <string name="app_name">Helpdesk-Mobile-Android</string>
+    <string name="app_name">Helpdesk Mobile</string>
+    <string-array name="Actions">
+        <item >Call</item>
+        <item >Text</item>
+        <item >E-mail</item>
+        <item >Chat</item>
+    </string-array>
 
 </resources>
