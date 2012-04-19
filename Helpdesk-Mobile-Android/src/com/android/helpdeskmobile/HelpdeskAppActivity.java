@@ -43,7 +43,7 @@ public class HelpdeskAppActivity extends ListActivity {
 				case 0:
 					try {
 						Intent intent = new Intent(Intent.ACTION_CALL);
-						intent.setData(Uri.parse("tel:6412694400"));
+						intent.setData(Uri.parse("tel:+16412694400"));
 						startActivity(intent);
 					} catch (Exception e) {
 						Log.e("Helpdesk Mobile", "Failed to invoke call", e);
