@@ -1,6 +1,6 @@
 package edu.grinnell.helpdeskmobile;
 
-import com.android.helpdeskmobile.R;
+import edu.grinnell.helpdeskmobile.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;
