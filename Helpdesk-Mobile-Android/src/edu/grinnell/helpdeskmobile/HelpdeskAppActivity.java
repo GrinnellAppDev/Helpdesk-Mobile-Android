@@ -38,15 +38,15 @@ public class HelpdeskAppActivity extends ListActivity {
 
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				
+
 				switch (position) {
 
 				// call helpdesk
 				case 0:
 					try {
-						Intent intent = new Intent(Intent.ACTION_CALL);
-						intent.setData(Uri.parse("tel:+16412694400"));
-						startActivity(intent);
+						Intent callIntent = new Intent(Intent.ACTION_CALL);
+						callIntent.setData(Uri.parse("tel:+16412694400"));
+						startActivity(callIntent);
 					} catch (Exception e) {
 						Log.e("Helpdesk Mobile", "Failed to invoke call", e);
 					}
@@ -54,26 +54,39 @@ public class HelpdeskAppActivity extends ListActivity {
 
 					// TODO: text helpdesk
 				case 1:
-					Context context = getApplicationContext();
-					CharSequence text = "text message helpdesk placeholder";
-					int duration = Toast.LENGTH_SHORT;
-					Toast toast = Toast.makeText(context, text, duration);
-					toast.show();
+					Intent textIntent = new Intent(Intent.ACTION_VIEW);
+					textIntent.setType("vnd.android-dir/mms-sms");
+					textIntent.putExtra("address", "16419904687");
+				//	smsIntent.putExtra("sms_body","Body of Message");
+					startActivity(textIntent);
+
 					break;
 
 					// TODO: email helpdesk
 				case 2:
-					Context context2 = getApplicationContext();
-					CharSequence text2 = "email helpdesk placeholder";
-					int duration2 = Toast.LENGTH_SHORT;
-					Toast toast2 = Toast.makeText(context2, text2, duration2);
-					toast2.show();
+					Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);  
+
+					String aEmailList[] = { "helpdesk@grinnell.edu" };  
+					// String aEmailCCList[] = { "user3@fakehost.com","user4@fakehost.com"};  
+					// String aEmailBCCList[] = { "user5@fakehost.com" };  
+
+					emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);  
+					// emailIntent.putExtra(android.content.Intent.EXTRA_CC, aEmailCCList);  
+					// emailIntent.putExtra(android.content.Intent.EXTRA_BCC, aEmailBCCList);  
+
+					emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "My subject");  
+
+					emailIntent.setType("plain/text");  
+					emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "My message body.");  
+					
+					startActivity(Intent.createChooser(emailIntent, "Send your email in:"));  
+					// startActivity(emailIntent);
 					break;
 
 					// TODO: chat with helpdesk
 				case 3:
 					Context context3 = getApplicationContext();
-					CharSequence text3 = "chat with helpdesk placeholder";
+					CharSequence text3 = "meebo chat with TC placeholder";
 					int duration3 = Toast.LENGTH_SHORT;
 					Toast toast3 = Toast.makeText(context3, text3, duration3);
 					toast3.show();
